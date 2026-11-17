@@ -1,0 +1,123 @@
+{% extends 'tbase.html' %}
+{% block title %} Register {% endblock %}
+{% block script %}
+<script>
+
+</script>
+{% endblock %}
+{% block style %}
+<style>
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 47%; /* Center the snackbar */
+  bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+</style>
+{% endblock %}
+{% block content %}
+
+<section style="margin-top: 5rem; margin-bottom: 10rem;" class="vh-100" style="background-color: #eee;">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-1">
+        <div class="col-lg-12 col-xl-11">
+          <div class="card text-black" style="border-radius: 25px; align-self: center; background-color:beige;">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-center">
+                <div class=" order-2 order-lg-1">
+  
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Your New Access Token</p>
+                  
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                      <div class="form-outline flex-fill mb-0">
+                        <input disabled type="text" id="ntoken" class="form-control" style="background-color: #ffffff; text-align: center;" Name='ntoken' value="{{ntoken}}" />
+                      </div>
+                      <button type="button" onclick="copyNtoken();" class="far fa-clipboard fa-lg me-3 fa-fw" style="border: 0px; background-color: beige;" title="Copy to clipboard"> </button>
+                    </div>
+
+                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Don't Lose This & Keep It Safe!</p>
+
+
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      <a href="/login/" class="btn btn-primary btn-lg">Go To Login</a>
+                    </div>
+
+                    <div id="snackbar" style="border-radius: 50px;"> <input disabled type="text" id="snackValue" style="text-align: center; background-color: #333; border: 0px; width: 300px; color: #ffffff;" /> </div>
+  
+
+  
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+
+<script>
+  function copyNtoken() {
+    var copyText= document.getElementById('ntoken');
+
+    navigator.clipboard.writeText(copyText.value);
+
+    // Get the snackbar DIV
+    var x = document.getElementById("snackbar");
+
+    // Add the "show" class to DIV
+    
+    x.className = "show";
+
+    var displayText = "Copied New Access Token to Clipboard";
+    document.getElementById('snackValue').value = displayText;
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+
+  }
+
+</script>
+{% endblock %}

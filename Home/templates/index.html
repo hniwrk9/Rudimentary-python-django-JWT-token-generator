@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block title %} Homepage {% endblock %}
+{% block script %}
+<script>
+
+</script>
+{% endblock %}
+{% block style %}
+
+{% endblock %}
+
+{% block content %}
+
+
+<div class="container mb-3">
+        <div class="card col-lg-4 mx-auto mt-3 mb-3" style="border-radius: 50px;">
+            <div class="card-body" style="background-color: beige; border-radius: 50px;">
+                {%if error%}
+                  <div class="alert alert-danger" role="alert">
+                    {{error}}
+                  </div>
+                {%endif%}
+                <h5 class="card-title">User Details</h5>
+                <p class="card-text">You can view the user details by clicking the view details button below.</p>
+                <p class="card-text">This will reveal sensitive information about the user and something like this will never be available to the user after logging in.</p>
+                <p class="card-text">This information will only be checked on the backend to give permissions and allow appropriate features after the user is logged in.</p>
+                {%if status%}
+                <form action="." method="POST">
+                    {% csrf_token %}
+                    <div class=" col-12  d-inline-flex">
+                        <ul class="col-12 w-100">
+                            {%if values.csid%}
+                            <li >
+                                Staff ID: <input class="w-responsive" type="text" Name='csid' value="{{values.csid}}" disabled style="background-color: #ffffff; border-color: #ffffff; border-top-style: none; border-left-style: none;"  />
+                            </li>
+                            {%else%}
+                            <li >
+                                Staff ID: <input class="w-responsive" type="text" Name='csid' value="**************" disabled style="background-color: #ffffff; border-color: #ffffff; border-top-style: none; border-left-style: none;"  />
+                            </li>
+                            {%endif%}
+                            {%if values.fname and values.lname%}
+                            <li style="margin-top: 10%;">
+                                Name: <input class="w-responsive" type="text" Name='Name' value="{{values.fname}} {{values.lname}}" disabled style="background-color: #ffffff; border-color: #ffffff; border-top-style: none; border-left-style: none;"  />
+                            </li>
+                            {%else%}
+                            <li style="margin-top: 5%;">
+                                Name: <input class="w-responsive" type="text" Name='Name' value="**************" disabled style="background-color: #ffffff; border-color: #ffffff; border-top-style: none; border-left-style: none;"  />
+                            </li>
+                            {%endif%}
+                            {%if values.email%}
+                            <li style="margin-top: 10%;">
+                                Email: <input class="w-responsive" type="text" Name='email' value="{{values.email}}" disabled style="background-color: #ffffff; border-color: #ffffff; border-top-style: none; border-left-style: none;"  />
+                            </li>
+                            {%else%}
+                            <li style="margin-top: 5%;">
+                                Email: <input class="w-responsive" type="text" Name='email' value="**************" disabled style="background-color: #ffffff; border-color: #ffffff; border-top-style: none; border-left-style: none;"  />
+                            </li>
+                            {%endif%}
+                            {%if values.role%}
+                            <li style="margin-top: 10%; ">
+                                Role: <input class="w-responsive" type="text" Name='role' value="{{values.role}}" disabled style="background-color: #ffffff; border-color: #ffffff; border-top-style: none; border-left-style: none;"  />
+                            </li>
+                            {%else%}
+                            <li style="margin-top: 5%; ">
+                                Role: <input class="w-responsive" type="text" Name='role' value="**************" disabled style="background-color: #ffffff; border-color: #ffffff; border-top-style: none; border-left-style: none;"  />
+                            </li>
+                            {%endif%}
+                        </ul>
+                    </div>
+                    <button type="submit" class="btn btn-primary float-end" data-mdb-ripple-init>View Details</button>
+                </form>
+                {%else%}
+                <form action="." method="POST">
+                    {% csrf_token %}
+                    <div class=" col-12  d-inline-flex">
+                        <ul class="col-12 w-100">
+                            <li >
+                                Staff ID: <input class="w-responsive" type="text" Name='csid' value="**************" disabled style="background-color: #ffffff; border-color: #ffffff; border-top-style: none; border-left-style: none;"  />
+                            </li>
+                            <li style="margin-top: 5%;">
+                                Name: <input class="w-responsive" type="text" Name='Name' value="**************" disabled style="background-color: #ffffff; border-color: #ffffff; border-top-style: none; border-left-style: none;"  />
+                            </li>
+                            <li style="margin-top: 5%;">
+                                Email: <input class="w-responsive" type="text" Name='email' value="**************" disabled style="background-color: #ffffff; border-color: #ffffff; border-top-style: none; border-left-style: none;"  />
+                            </li>
+                            <li style="margin-top: 5%; ">
+                                Role: <input class="w-responsive" type="text" Name='role' value="**************" disabled style="background-color: #ffffff; border-color: #ffffff; border-top-style: none; border-left-style: none;"  />
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="submit" class="btn btn-primary float-end" data-mdb-ripple-init>View Details</button>
+                </form>
+                {%endif%}
+            </div>
+      </div>
+</div>
+
+{% endblock %}
